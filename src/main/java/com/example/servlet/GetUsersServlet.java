@@ -13,6 +13,9 @@ import com.example.Warehouse;
 
 @WebServlet("/users")
 public class GetUsersServlet extends HttpServlet {
+
+    private static final String ERROR_MESSAGE_KEY = "errorMessage";
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
@@ -25,15 +28,15 @@ public class GetUsersServlet extends HttpServlet {
                     req.setAttribute("users", users);
                 } else {
                     // Handle the case where users is null
-                    req.setAttribute("errorMessage", "Unable to retrieve user data.");
+                    req.setAttribute(ERROR_MESSAGE_KEY, "Unable to retrieve user data.");
                 }
             } else {
                 // Handle the case where warehouse is null
-                req.setAttribute("errorMessage", "Warehouse is not initialized.");
+                req.setAttribute(ERROR_MESSAGE_KEY, "Warehouse is not initialized.");
             }
         } catch (Exception e) {
             // Log or handle the exception appropriately
-            req.setAttribute("errorMessage", "An error occurred while processing your request.");
+            req.setAttribute(ERROR_MESSAGE_KEY, "An error occurred while processing your request.");
         }
 
         // Forward to the appropriate JSP page
