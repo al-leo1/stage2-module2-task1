@@ -31,6 +31,7 @@ public class GetUsersServlet extends HttpServlet {
             req.setAttribute("errorMessage", "An error occurred while processing your request.");
         }
 
+        // Forward to the appropriate JSP page
         req.getRequestDispatcher("/users.jsp").forward(req, resp);
     }
 }
