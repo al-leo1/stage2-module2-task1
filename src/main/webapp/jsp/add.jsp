@@ -1,8 +1,9 @@
 <%@ page import="com.example.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<html>
+<html lang="en">
 <head>
+<title>ADD USER</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
@@ -25,7 +26,7 @@
         <button class="w3-button w3-round btn-block w3-green" type="submit">Submit</button>
     </form>
     <div>
-        <button class="w3-btn w3-light-blue w3-round-large" onclick="location.href='/users'">Users</button>
+        <button class="w3-btn w3-light-blue w3-round-large" onclick="location.href='users'">Users</button>
     </div>
 </div>
 </body>
