@@ -27,7 +27,7 @@ public class AddUserServlet extends HttpServlet {
         instance.addUser(user);
 
         // Set user attribute to be used in the add.jsp page
-        request.setAttribute("user", firstName + " " + lastName);
+        request.setAttribute("user", user);
 
         // Forward back to the "add" page
         request.getRequestDispatcher("/add.jsp").forward(request, response);
