@@ -1,6 +1,7 @@
 <%@ page import="java.util.Set" %>
 <%@ page import="com.example.User" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
+<!DOC TYPE >
 <html lang="en">
 <body>
 <head>

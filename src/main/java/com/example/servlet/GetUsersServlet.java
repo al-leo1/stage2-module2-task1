@@ -1,6 +1,5 @@
 package com.example.servlet;
 
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,8 +15,22 @@ import com.example.Warehouse;
 public class GetUsersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Set <User> users = Warehouse.getInstance().getUsers();
-        req.setAttribute("users", users);
-        req.getRequestDispatcher("/users.jsp").forward(req,resp);
+        try {
+            // Ensure Warehouse.getInstance() and getUsers() are not null
+            Warehouse warehouse = Warehouse.getInstance();
+            Set<User> users = warehouse.getUsers();
+
+            if (users != null) {
+                req.setAttribute("users", users);
+            } else {
+                // Handle the case where users is null
+                req.setAttribute("errorMessage", "Unable to retrieve user data.");
+            }
+        } catch (Exception e) {
+            // Log or handle the exception appropriately
+            req.setAttribute("errorMessage", "An error occurred while processing your request.");
+        }
+
+        req.getRequestDispatcher("/users.jsp").forward(req, resp);
     }
 }
