@@ -16,15 +16,20 @@ public class GetUsersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            // Ensure Warehouse.getInstance() and getUsers() are not null
+            // Ensure Warehouse.getInstance() is not null
             Warehouse warehouse = Warehouse.getInstance();
-            Set<User> users = warehouse.getUsers();
+            if (warehouse != null) {
+                Set<User> users = warehouse.getUsers();
 
-            if (users != null) {
-                req.setAttribute("users", users);
+                if (users != null) {
+                    req.setAttribute("users", users);
+                } else {
+                    // Handle the case where users is null
+                    req.setAttribute("errorMessage", "Unable to retrieve user data.");
+                }
             } else {
-                // Handle the case where users is null
-                req.setAttribute("errorMessage", "Unable to retrieve user data.");
+                // Handle the case where warehouse is null
+                req.setAttribute("errorMessage", "Warehouse is not initialized.");
             }
         } catch (Exception e) {
             // Log or handle the exception appropriately
